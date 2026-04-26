@@ -3,15 +3,13 @@ import personagens.*;
 
 public class Batalha {
     private Criatura jogador;
-    private Criatura inimigo1;
-    private Criatura inimigo2;
+    private Criatura inimigo;
     private Scanner sc;
     private Criatura vencedor;
 
-    public Batalha(Criatura jogador, Criatura inimigo1, Criatura inimigo2, Scanner sc) {
+    public Batalha(Criatura jogador, Criatura inimigo, Scanner sc) {
         this.jogador = jogador;
-        this.inimigo1 = inimigo1;
-        this.inimigo2 = inimigo2;
+        this.inimigo = inimigo;
         this.sc = sc;
         this.vencedor = null;
     }
@@ -25,37 +23,24 @@ public class Batalha {
             System.out.println("\nRodada: " + cont);
 
             System.out.println("##############");
-            System.out.println("Escolha o inimigo: " + "\n[1] " + inimigo1.getClass().getSimpleName() + "\n[2] " + inimigo2.getClass().getSimpleName());
-
-            int escolhaInimigo = sc.nextInt();
-            while (escolhaInimigo < 1 || escolhaInimigo > 2) {
-                System.out.println("Número inválido! Digite novamente: ");
-                escolhaInimigo = sc.nextInt();
-            }
-            Criatura inimigoEscolhido = (escolhaInimigo == 1) ? inimigo1 : inimigo2;
 
             jogador.mostrarStatus();
+            inimigo.mostrarStatus();
 
-            if (inimigoEscolhido == inimigo1) {
-                inimigo1.mostrarStatus();
-            } else {
-                inimigo2.mostrarStatus();
-            }
+            jogador.fazAtaque(inimigo);
 
-            jogador.fazAtaque(inimigoEscolhido);
-
-            if (inimigoEscolhido.estaVivo()) {
-                inimigoEscolhido.fazAtaque(jogador);
+            if (inimigo.estaVivo()) {
+                inimigo.fazAtaque(jogador);
             }
 
             if (!jogador.estaVivo()) {
                 jogador.fraseMorte();
-                vencedor = inimigoEscolhido;
+                vencedor = inimigo;
                 break;
             }
 
-            if (!inimigoEscolhido.estaVivo()) {
-                inimigoEscolhido.fraseMorte();
+            if (!inimigo.estaVivo()) {
+                inimigo.fraseMorte();
                 vencedor = jogador;
                 break;
             }
