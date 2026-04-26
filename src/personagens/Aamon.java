@@ -1,8 +1,10 @@
 package personagens;
 
+import defesa.*;
+
 public class Aamon extends Inimigo {
     public Aamon() {
-        super("Aamon", 2500, 200);
+        super("Aamon", 2500, 200, new EscudoEsquiva(10, 30));
     }
 
     @Override
