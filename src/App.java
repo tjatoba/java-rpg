@@ -57,49 +57,10 @@ public class App {
         inimigo.fraseApresentacao();
         inimigo2.fraseApresentacao();
 
-        int cont = 0;
+        Batalha batalha = new Batalha(jogador, inimigo, inimigo2, sc);
+        Criatura vencedor = batalha.iniciarBatalha();
 
-        while (true) {
-            cont++;
-
-            System.out.println("\nRodada: " + cont);
-
-            System.out.println("##############");
-            System.out.println("Escolha o inimigo: " + "\n[1] " + inimigo.getClass().getSimpleName() + "\n[2] " + inimigo2.getClass().getSimpleName());
-
-        
-
-            int escolhaInimigo = sc.nextInt();
-            while (escolhaInimigo < 1 || escolhaInimigo > 2) {
-                System.out.println("Número inválido! Digite novamente: ");
-                escolhaInimigo = sc.nextInt();
-            }
-            Criatura inimigoEscolhido = (escolhaInimigo == 1) ? inimigo : inimigo2;
-
-            jogador.mostrarStatus();
-
-            if (inimigoEscolhido == inimigo) {
-                inimigo.mostrarStatus();
-            } else {
-                inimigo2.mostrarStatus();
-            }
-
-            jogador.fazAtaque(inimigoEscolhido);
-
-            if (inimigoEscolhido.estaVivo()) {
-                inimigoEscolhido.fazAtaque(jogador);
-            }
-
-            if (!jogador.estaVivo()) {
-                jogador.fraseMorte();
-                break;
-            }
-
-            if (!inimigoEscolhido.estaVivo()) {
-                inimigoEscolhido.fraseMorte();
-                break;
-            }
-        }
+        System.out.println("Vencedor: " + vencedor.getNome());
         sc.close();
     }
 }
