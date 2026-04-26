@@ -49,18 +49,37 @@ public class App {
         Arma[] armasJogador = {armaCurta, armaLonga};
         
         Criatura jogador = new Jogador(nomeJogador, armasJogador);
-        Criatura inimigo = new Malignus();
-        Criatura inimigo2 = new Demonion();
+        Criatura[] inimigos = {new Malignus(), new Demonion(), new Aamon()};
 
         System.out.println("##############");
         jogador.fraseApresentacao();
-        inimigo.fraseApresentacao();
-        inimigo2.fraseApresentacao();
+        for(Criatura inimigo : inimigos) {
+            inimigo.fraseApresentacao();
+        }
 
-        Batalha batalha = new Batalha(jogador, inimigo, inimigo2, sc);
-        Criatura vencedor = batalha.iniciarBatalha();
+        java.util.List<String> resultados = new java.util.ArrayList<>();
 
-        System.out.println("Vencedor: " + vencedor.getNome());
+        for(int i = 0; i < 3; i++) {
+            Criatura inimigoAtual = inimigos[i];
+            System.out.println("\n=== Batalha " + (i+1) + " contra " + inimigoAtual.getNome() + " ===");
+
+            Batalha batalha = new Batalha(jogador, inimigoAtual, sc);
+            Criatura vencedor = batalha.iniciarBatalha();
+
+            if(vencedor == jogador) {
+                resultados.add("Batalha " + (i+1) + ": Vitória contra " + inimigoAtual.getNome());
+                jogador.setVida(900); // Restaurar vida
+            } else {
+                resultados.add("Batalha " + (i+1) + ": Derrota contra " + inimigoAtual.getNome());
+                break;
+            }
+        }
+
+        System.out.println("\n=== Resultados das Batalhas ===");
+        for(String resultado : resultados) {
+            System.out.println(resultado);
+        }
+
         sc.close();
     }
 }

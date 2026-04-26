@@ -35,5 +35,9 @@ public abstract class Criatura {
         return this.nome;
     }
 
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
     public abstract void fazAtaque(Criatura inimigo);
 }
