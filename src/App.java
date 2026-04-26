@@ -1,7 +1,9 @@
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import personagens.*;
 import armas.*;
-import defesa.*;
 
 public class App {
     public static void main(String[] args) {
@@ -49,7 +51,9 @@ public class App {
         Arma[] armasJogador = {armaCurta, armaLonga};
         
         Criatura jogador = new Jogador(nomeJogador, armasJogador);
-        Criatura[] inimigos = {new Malignus(), new Demonion(), new Aamon()};
+        List<Criatura> inimigosDisponiveis = Arrays.asList(new Malignus(), new Demonion(), new Aamon(), new Abaddon());
+        Collections.shuffle(inimigosDisponiveis);
+        Criatura[] inimigos = inimigosDisponiveis.subList(0, 3).toArray(new Criatura[0]);
 
         System.out.println("##############");
         jogador.fraseApresentacao();
