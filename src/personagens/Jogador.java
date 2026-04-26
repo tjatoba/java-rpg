@@ -4,10 +4,11 @@ import java.util.Scanner;
 import armas.*;
 
 public class Jogador extends Criatura {
-    private Arma[] armas = { new Faca(), new Pistola(), new Espada(), new ArcoEFlecha() };
+    private Arma[] armas;
 
-    public Jogador(String nome) {
+    public Jogador(String nome, Arma[] armas) {
         super(nome, 900);
+        this.armas = armas;
     }
 
     Scanner sc = new Scanner(System.in);
