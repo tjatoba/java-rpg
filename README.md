@@ -1,6 +1,3 @@
-Here is a professional README.md template for your Java RPG project. You can further customize the sections (such as gameplay features, screenshots, and roadmap) based on the specifics of your game.
-
-````markdown name=README.md
 # Java RPG
 
 A text-based role-playing game (RPG) implemented in Java. This project is designed to demonstrate fundamental concepts in object-oriented programming, data structures, and game logic using Java.
@@ -80,5 +77,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For questions, feedback, or contributions, please open an issue on GitHub.
-
-````
