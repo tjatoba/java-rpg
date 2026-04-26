@@ -25,17 +25,14 @@ public abstract class Criatura {
     }
 
     public boolean estaVivo() {
-        // if (this.vida <= 0) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
-
         return this.vida > 0;
     }
 
     public void mostrarStatus() {
         System.out.printf("Nome: %s | Vida: %d\n", this.nome, this.vida);
+    }
+    public String getNome() {
+        return this.nome;
     }
 
     public abstract void fazAtaque(Criatura inimigo);
